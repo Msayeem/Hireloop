@@ -46,7 +46,7 @@ return
         
         {/* Header Section */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
             Create an account
           </h1>
           <p className="text-sm text-slate-500 mt-2">
