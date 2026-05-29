@@ -55,7 +55,7 @@ const Navbar = () => {
             <Link href="pricing">Pricing</Link>
           </li>
           <li>
-            <Link href="signIn">Sign In</Link>
+            <Link href="signIn">Login</Link>
           </li>
           <li>
             <Link href="#">Get Started</Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
             <Link href="pricing">Pricing</Link>
           </li>
           <li>
-            <Link href="signIn">Sign In</Link>
+            <Link href="signIn">Login</Link>
           </li>
           <li>
             <Link href="#">Get Started</Link>
