@@ -1,15 +1,17 @@
 "use client";
 
 import { Check } from "@gravity-ui/icons";
-import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, Description, FieldError, Form, Input, Label, Radio, RadioGroup, TextField } from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from 'react';
+import React, { useState } from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "../lib/auth-client";
 
 
 const SignUp = () => {
+
+  const [role, setRole]=useState('seeker')
 
 const router=useRouter();
 
@@ -23,6 +25,7 @@ const router=useRouter();
       image: user.image,
       email: user.email,
       password: user.password,
+      role: role,
       rememberMe: true,
       callbackURL: "/",
     });
@@ -135,6 +138,30 @@ return
             </Description>
             <FieldError className="text-xs text-red-500 mt-1" />
           </TextField>
+
+           <div className="flex flex-col gap-4">
+      <Label>Select Role</Label>
+      <RadioGroup defaultValue="seeker" name="role" orientation="horizontal" onChange={value=>setRole(value)}>
+        <Radio value="seeker">
+          <Radio.Control>
+            <Radio.Indicator />
+          </Radio.Control>
+          <Radio.Content>
+            <Label>Job Seeker</Label>
+            <Description>For side projects</Description>
+          </Radio.Content>
+        </Radio>
+        <Radio value="recruiter">
+          <Radio.Control>
+            <Radio.Indicator />
+          </Radio.Control>
+          <Radio.Content>
+            <Label>Recruiter</Label>
+            <Description>Advanced reporting</Description>
+          </Radio.Content>
+        </Radio>
+          </RadioGroup>
+    </div>
 
           {/* Action Buttons */}
           <div className="flex flex-col gap-3 mt-2">

@@ -1,10 +1,15 @@
 "use client"
 import { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Link, Button, Avatar } from "@heroui/react";
 import React from 'react';
 import Image from "next/image";
+import { authClient } from "@/app/lib/auth-client";
+
 
 const Navbar = () => {
+
+  const {data:session, isPending}=authClient.useSession();
+  const user=session?.user;
 
  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -55,11 +60,22 @@ const Navbar = () => {
             <Link href="pricing">Pricing</Link>
           </li>
           <li>
-            <Link href="signIn">Login</Link>
+            {user ? <div className="flex items-center gap-3"><button onClick={async()=>await authClient.signOut()}>Log Out</button>  <h1>{user?.name}</h1>  <Avatar className="size-16">
+        <Avatar.Image
+          alt="Extra Large"
+          src={user?.image}
+        />
+        <Avatar.Fallback>XL</Avatar.Fallback>
+      </Avatar></div>
+:
+<Link href="signIn">Login</Link>
+
+}
           </li>
           <li>
             <Link href="#">Get Started</Link>
           </li>
+         
         </ul>
       </header>
       {isMenuOpen && (
