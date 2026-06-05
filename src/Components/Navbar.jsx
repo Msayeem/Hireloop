@@ -60,15 +60,16 @@ const Navbar = () => {
             <Link href="pricing">Pricing</Link>
           </li>
           <li>
-            {user ? <div className="flex items-center gap-3"><button onClick={async()=>await authClient.signOut()}>Log Out</button>  <h1>{user?.name}</h1>  <Avatar className="size-16">
+            {user ? <div className="flex items-center gap-3"><button onClick={async()=>await authClient.signOut()}>Log Out</button>  <h1>{user?.name}</h1>
+        <Avatar className="rounded-lg">
         <Avatar.Image
-          alt="Extra Large"
+          alt="Square Avatar"
           src={user?.image}
         />
-        <Avatar.Fallback>XL</Avatar.Fallback>
+        <Avatar.Fallback className="rounded-lg">SQ</Avatar.Fallback>
       </Avatar></div>
 :
-<Link href="signIn">Login</Link>
+<Link href="/signIn">Login</Link>
 
 }
           </li>
@@ -91,7 +92,7 @@ const Navbar = () => {
             <Link href="pricing">Pricing</Link>
           </li>
           <li>
-            <Link href="signIn">Login</Link>
+            <Link href="/signIn">Login</Link>
           </li>
           <li>
             <Link href="#">Get Started</Link>
