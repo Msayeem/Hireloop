@@ -13,11 +13,13 @@ import {
     ListBox,
     Switch,
     Button,
-    toast
+    
 } from "@heroui/react";
 import { Briefcase, Globe } from "@gravity-ui/icons";
 
 import { redirect } from "next/navigation";
+import { createJob } from "@/app/lib/jobs";
+import toast from "react-hot-toast";
 
 export default function PostJobPage() {
     // Mock configuration for recruiter's authenticated state
@@ -66,7 +68,14 @@ export default function PostJobPage() {
             status: "active",
             isPubliclyVisible: true,
         };
-        console.log(payload)
+
+        const res=await createJob(payload)
+        if(res.insertedId){
+toast.success("Job posted successfully!");
+e.target.reset();
+setIsRemote(false);
+redirect('/dashboard/recruiter')
+        }
 
        
     };
