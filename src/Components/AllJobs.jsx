@@ -98,7 +98,7 @@ if (!job) return null;
       {/* Card Footer: Action Button */}
       <Card.Footer className="p-0 pt-4">
         <Link
-          href={`/jobs/${jobId}`}
+          href={`/browseJobs/${jobId}`}
           className="group flex justify-start items-center gap-2 bg-transparent hover:bg-zinc-800/40 p-0 text-base font-medium text-white transition-all duration-200"
           variant="light"
           disableRipple
