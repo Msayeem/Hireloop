@@ -3,13 +3,17 @@ import React from 'react';
 import { Table, Chip, Button, Tooltip } from "@heroui/react";
 // Assuming Gravity Icons maps to standard lucide equivalents; adjust paths if using a custom package
 import { Eye, Edit2, Trash2 } from "lucide-react"; 
-import { getJob } from '@/app/lib/jobs';
+import { getJob, getRecruiterCompany } from '@/app/lib/jobs';
 import Link from 'next/link';
+import { getUserSession } from '@/app/lib/session';
 
 const RecruiterJobsPage = async() => {
-    const companyId='company_123'
+    const user=await getUserSession();
+    
+    const companyId=await getRecruiterCompany(user?.id);
 
-const jobs=await getJob(companyId);
+
+const jobs=await getJob(companyId._id);
 console.log(jobs)
 
    const getStatusColor = (status) => {

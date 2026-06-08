@@ -1,15 +1,11 @@
 import React from 'react';
 
-const Company =({data}) => {
+const Company =({company}) => {
 
  
     return (
         <div>
-            {data.map(com=>
-                <div key={com._id}>
-<h1>{com.company_name}</h1>
-                    </div>
-            )}
+          <h1>{company.company_name}</h1>
         </div>
     );
 };

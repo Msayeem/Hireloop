@@ -1,22 +1,19 @@
 import React from 'react';
-import CompanyProfile from './CompanyProfile';
+import CompanyProfile from './CompanyProfile'; 
 import { getUserSession } from '@/app/lib/session';
 import Company from '@/Components/Company';
+import { getRecruiterCompany } from '@/app/lib/jobs';
 
 const CompanyPage = async() => {
 
     const user=await getUserSession();
-    console.log(user)
 
-
-const res=await fetch(`http://localhost:5000/companies`);
-const data=await res.json();
-console.log(data)
+const company=await getRecruiterCompany(user?.id);
 
     return (
         <div>
-            <CompanyProfile data={data}></CompanyProfile>
-        <Company data={data}></Company>
+            <CompanyProfile user={user}></CompanyProfile>
+        <Company company={company}></Company>
         </div>
     );
 };

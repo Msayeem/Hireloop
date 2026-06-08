@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
         <ul className="hidden items-center gap-4 md:flex">
           <li>
-            <Link href="jobs">Browse Jobs</Link>
+            <Link href="/browseJobs">Browse Jobs</Link>
           </li>
           <li>
             <Link href="company">Company</Link>

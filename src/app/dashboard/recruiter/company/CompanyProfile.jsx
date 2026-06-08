@@ -4,7 +4,7 @@ import {Envelope} from "@gravity-ui/icons";
 import {Button, Select, Input, Label, ListBox, Modal, Surface, TextField, TextArea, Description, FieldError} from "@heroui/react";
 import React, {useState, useRef, useCallback} from 'react';
 
-const CompanyProfile = () => {
+const CompanyProfile = ({user}) => {
   const [dragActive, setDragActive] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploadError, setUploadError] = useState("");
@@ -69,6 +69,8 @@ const onSubmit = async (e) => {
       const imageUrl = await uploadImageToImgBB(uploadedFile.file);
       company.logo_url = imageUrl;
     }
+
+    company.recruiterId=user?.id;
 
     const postCompany = await createCompany(company);
     
