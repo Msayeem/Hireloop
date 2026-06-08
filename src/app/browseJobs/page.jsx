@@ -1,19 +1,22 @@
 import AllJobs from '@/Components/AllJobs';
+import JobListingContainer from '@/Components/JobListingContainer';
 import React from 'react';
 
 const BrowseJobs = async() => {
 
     const res=await fetch(`http://localhost:5000/jobs`);
-   const jobData=await res.json();
+   const jobs=await res.json();
 
     return (
-      <div className='flex justify-center'>
-          <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-10 my-15'>
-            {jobData.map(job=>
-                  <AllJobs key={job._id} job={job}></AllJobs>
-            )}
-        </div>
+        <div className="w-full min-h-screen bg-zinc-950 p-6 md:p-12 text-white">
+      <div className="max-w-7xl mx-auto mb-10">
+        <h1 className="text-4xl font-bold tracking-tight">Open Positions</h1>
+        <p className="text-zinc-400 mt-2">Discover your next engineering challenge.</p>
       </div>
+
+      {/* Pass data to the Client Wrapper to handle filtering interactivity */}
+      <JobListingContainer initialJobs={jobs || []} />
+    </div>
     );
 };
 
