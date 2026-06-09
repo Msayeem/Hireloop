@@ -6,9 +6,16 @@ import Link from "next/link";
 import React from 'react';
 import { authClient } from "../lib/auth-client";
 import toast from "react-hot-toast";
+import { useRouter, useSearchParams } from "next/navigation";
+
 
 
 const SignIn = () => {
+
+  const router=useRouter();
+
+  const searchParams=useSearchParams();
+  const redirectTo=searchParams.get("redirect") || "/"
 
 
     const onSubmit = async (e) => {
@@ -20,14 +27,15 @@ const SignIn = () => {
       email: user.email,
       password: user.password,
       rememberMe: true,
-      callbackURL: "/",
+
     });
 
     if(error){
       toast.error("Login Failed")
     }
     else{
-      toast.success("Login Successful")
+      toast.success("Login Successful");
+      router.push(redirectTo)
     }
 
   };
@@ -139,7 +147,7 @@ const SignIn = () => {
         <p className="text-center mt-8 text-sm text-slate-500">
           Don't have an account?{' '}
           <Link 
-            href="/signUp" 
+            href={`/signUp?redirect=${redirectTo}`}
             className="font-semibold text-slate-900 hover:text-blue-600 hover:underline transition-colors"
           >
             Sign up for free

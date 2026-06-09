@@ -3,13 +3,16 @@
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, Radio, RadioGroup, TextField } from "@heroui/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from 'react';
 import toast from "react-hot-toast";
 import { authClient } from "../lib/auth-client";
 
 
 const SignUp = () => {
+
+    const searchParams=useSearchParams();
+      const redirectTo=searchParams.get("redirect") || "/"
 
   const [role, setRole]=useState('seeker')
 
@@ -27,7 +30,7 @@ const router=useRouter();
       password: user.password,
       role: role,
       rememberMe: true,
-      callbackURL: "/",
+ 
     });
 
     if(error){
@@ -36,7 +39,7 @@ return
     }
     else{
       toast.success('Sign Up successfully');
-      router.push('/')
+      router.push(redirectTo)
     }
   };
 
@@ -187,7 +190,7 @@ return
         <p className="text-center mt-8 text-sm text-slate-500">
           Already have an account?{' '}
           <Link 
-            href="/signIn" 
+            href={`/signIn?redirect=${redirectTo}`} 
             className="font-semibold text-slate-900 hover:text-blue-600 hover:underline transition-colors"
           >
             Login here
