@@ -1,4 +1,6 @@
+import { getApplication } from '@/app/lib/jobs';
 import { getUserSession } from '@/app/lib/session';
+import ApplyForm from '@/Components/ApplyForm';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
@@ -14,9 +16,23 @@ if(user.role !== 'seeker'){
     return('Your are recruiter')
 }
 
+const plan={
+    name:'Free',
+    maxApplication:3
+}
+
+const applications=await getApplication(user.id)
+
+ const res=await fetch(`http://localhost:5000/jobs/${id}`);
+   const job=await res.json();
     return (
         <div>
-            <h3>Apply for this job</h3>
+            <h3>You have applied so far: {applications.length} out of {plan.maxApplication} application this month</h3>
+            {
+                applications.length < plan.maxApplication && 
+                <ApplyForm job={job} user={user}></ApplyForm>
+            }
+
         </div>
     );
 };

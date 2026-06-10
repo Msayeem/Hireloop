@@ -59,3 +59,22 @@ export const getRecruiterCompany=async (recruiterId)=>{
     return res.json()
 }
 
+
+export const postApplication=async(applicationData)=>{
+       const res=await fetch('http://localhost:5000/applications',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(applicationData)
+    });
+
+    return res.json()
+}
+
+
+export const getApplication=async(userId)=>{
+
+    const res=await fetch(`http://localhost:5000/applications?userId=${userId}`);
+    return res.json();
+}
