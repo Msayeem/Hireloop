@@ -57,8 +57,14 @@ const Navbar = () => {
             <Link href="company">Company</Link>
           </li>
           <li>
-            <Link href="pricing">Pricing</Link>
+            <Link href="/plans">Pricing</Link>
           </li>
+         {
+          user && 
+           <li>
+            <Link href={`/dashboard/${user?.role}`}>Dashboard</Link>
+          </li>
+         }
           <li>
             {user ? <div className="flex items-center gap-3"><button onClick={async()=>await authClient.signOut()}>Log Out</button>  <h1>{user?.name}</h1>
         <Avatar className="rounded-lg">
@@ -89,8 +95,14 @@ const Navbar = () => {
             <Link href="company">Company</Link>
           </li>
           <li>
-            <Link href="pricing">Pricing</Link>
+            <Link href="/plans">Pricing</Link>
           </li>
+         {
+          user && 
+           <li>
+            <Link href={`/dashboard/${user?.role}`}>Dashboard</Link>
+          </li>
+         }
           <li>
             <Link href="/signIn">Login</Link>
           </li>

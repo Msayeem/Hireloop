@@ -1,10 +1,10 @@
 import AllJobs from '@/Components/AllJobs';
 import JobListingContainer from '@/Components/JobListingContainer';
-import React from 'react';
+import React, { cache } from 'react';
 
 const BrowseJobs = async() => {
 
-    const res=await fetch(`http://localhost:5000/jobs`);
+    const res=await fetch(`http://localhost:5000/jobs`, {cache:'no-store'});
    const jobs=await res.json();
 
     return (
