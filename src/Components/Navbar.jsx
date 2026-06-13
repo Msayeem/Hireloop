@@ -54,7 +54,7 @@ const Navbar = () => {
             <Link href="/browseJobs">Browse Jobs</Link>
           </li>
           <li>
-            <Link href="company">Company</Link>
+            <Link href={`/${user?.role}/companies`}>Company</Link>
           </li>
           <li>
             <Link href="/plans">Pricing</Link>

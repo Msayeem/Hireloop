@@ -70,6 +70,7 @@ const onSubmit = async (e) => {
       company.logo_url = imageUrl;
     }
 
+    company.status='pending'
     company.recruiterId=user?.id;
 
     const postCompany = await createCompany(company);

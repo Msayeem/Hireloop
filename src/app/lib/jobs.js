@@ -60,6 +60,12 @@ export const getRecruiterCompany=async (recruiterId)=>{
 }
 
 
+export const getCompanies=async ()=>{
+    const res=await fetch(`http://localhost:5000/companies`);
+    return res.json()
+}
+
+
 export const postApplication=async(applicationData)=>{
        const res=await fetch('http://localhost:5000/applications',{
         method:'POST',
@@ -94,5 +100,16 @@ export const createSubscription=async(subInfo)=>{
         body:JSON.stringify(subInfo)
     });
 
+    return res.json()
+}
+
+export const updateCompany=async(id, data)=>{
+    const res=await fetch(`companies/${id}`, {
+        method:'PATCH',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(data)
+    });
     return res.json()
 }

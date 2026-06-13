@@ -8,12 +8,25 @@ const CompanyPage = async() => {
 
     const user=await getUserSession();
 
-const company=await getRecruiterCompany(user?.id);
+    let company = null;
+    let hasError = false;
+
+try{
+    if (user?.id){
+    company=await getRecruiterCompany(user?.id);
+    }
+} catch(error){
+    hasError=true;
+}
+
 
     return (
         <div>
             <CompanyProfile user={user}></CompanyProfile>
-        <Company company={company}></Company>
+        {
+            !hasError && company &&
+            <Company company={company}></Company>
+        }
         </div>
     );
 };
